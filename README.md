@@ -37,7 +37,7 @@ BouncingWidgetInOut(
 There is one optional parameter called "bouncingType" which specifies the bouncing type of the widget. That is "Bouncing In only" or "Bouncing out Only" or both "Bouncing In and Out". By **default bouncingType is "bounceInOnly"**.
 
 **bounceInOnly** => Widget will **shrink and grow** based on scale factor value. <br/>
-**bounceOutOnly** => Widget will **grow and shrink** based on scale factor value.
+**bounceOutOnly** => Widget will **grow and shrink** based on scale factor value.<br/>
 **bounceInAndOut** => Widget will **shrink and grow** first and then it will **grow and shrink** based on the scale factor value.
 
 You can even customize the bouncing animation by giving duration how much time your widgets needs to animate and
