@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.2
 
-* Included Widget where we can pass which type of bouncing animation we want, i.e) BounceInOnly, BounceOutOnly, BounceInAndOut
+* Updating comments

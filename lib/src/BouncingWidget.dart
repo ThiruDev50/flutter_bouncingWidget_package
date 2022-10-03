@@ -29,7 +29,7 @@ class BouncingWidgetInOut extends StatefulWidget {
       required this.onPressed,
       this.bouncingType = BouncingType.bounceInOnly,
       this.scaleFactor = 2,
-      this.duration = const Duration(milliseconds: 80),
+      this.duration = const Duration(milliseconds: 100),
       this.animationDismissionValue = 0.0,
       this.animationCompletionValue = 0.1})
       : super(key: key);
