@@ -48,8 +48,8 @@ There is one optional parameter called "bouncingType" which specifies the bounci
 
 **bounceInAndOut** => Widget will **shrink and grow** first and then it will **grow and shrink** based on the scale factor value.
 
-You can even customize the bouncing animation by giving duration how much time your widgets needs to animate and
-how large and small your widget should grow/shrink by giving scale factor value.
+You can even customize the bouncing animation by **giving duration** how much time your widgets needs to animate and
+how large and small your widget should grow/shrink by giving **scale factor value**.
 
 ## Additional information
 
