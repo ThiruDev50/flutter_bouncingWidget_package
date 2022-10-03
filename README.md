@@ -19,7 +19,8 @@ Want to animate your widgets (like containers, cards etc...) bouncing In and out
 This package contains a widget, where you need to wrap your own widgets ( like container, cards ect...) to animate them
 bounce in and out while clicking.
 
-![bouncing_widget_example](https://user-images.githubusercontent.com/97810531/193513787-d92512d4-a961-4325-b571-74788896fcee.gif)
+![bouncing-widget-eg2](https://user-images.githubusercontent.com/97810531/193555209-fa99cca7-d607-4f20-8059-fe5cd9ad0c4d.gif)
+
 
 
 ## Getting started
