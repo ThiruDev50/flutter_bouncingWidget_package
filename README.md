@@ -23,6 +23,10 @@ bounce in and out while clicking.
 
 
 ## Getting started
+As the first step we need to add this package in pubspec.yaml file or run the following command flutter pub add tdk_bouncingwidget 
+
+
+## Usage
 Just wrap your widget inside BouncingWidgetInOut widget as shown below and we are done!!
 
 ```dart

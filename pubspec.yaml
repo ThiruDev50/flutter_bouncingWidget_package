@@ -1,6 +1,6 @@
 name: tdk_bouncingwidget
 description: A bouncing animation flutter package for widgets. A widget can have three types of animation BounceIn, BounceOut and BounceInAndOut
-version: 0.0.2
+version: 1.0.2
 repository: https://github.com/ThiruDev50/flutter_bouncingWidget_package
 
 environment:

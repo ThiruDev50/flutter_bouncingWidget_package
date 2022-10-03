@@ -1,26 +1,27 @@
-// ignore_for_file: file_names
+
 
 import 'package:flutter/material.dart';
 
 class BouncingWidgetInOut extends StatefulWidget {
-  //child widget to make animated
+  ///child widget to make animated
   final Widget child;
 
-  //on press call back function
+  ///on press call back function
   final VoidCallback onPressed;
 
-  // Bouncing Type
+  /// Bouncing Type
   final BouncingType bouncingType;
-  //Animation duration
+
+  ///Animation duration
   final Duration duration;
 
-  //scale factor for different devices
+  ///scale factor for different devices
   final double scaleFactor;
 
-  //animation dissmissed value
+  ///animation dissmissed value
   final double animationDismissionValue;
 
-  //animation completion value
+  ///animation completion value
   final double animationCompletionValue;
 
   const BouncingWidgetInOut(
@@ -29,7 +30,7 @@ class BouncingWidgetInOut extends StatefulWidget {
       required this.onPressed,
       this.bouncingType = BouncingType.bounceInOnly,
       this.scaleFactor = 2,
-      this.duration = const Duration(milliseconds: 100),
+      this.duration = const Duration(milliseconds: 300),
       this.animationDismissionValue = 0.0,
       this.animationCompletionValue = 0.1})
       : super(key: key);
@@ -40,24 +41,46 @@ class BouncingWidgetInOut extends StatefulWidget {
 
 class _BouncingWidgetInOutState extends State<BouncingWidgetInOut>
     with SingleTickerProviderStateMixin {
-  //values passing as input
+  ///values passing as input
+
+  /// Child
   Widget get child => widget.child;
+
+  /// onPressed method for the child. ( This is mandatory)
   VoidCallback get onPressed => widget.onPressed;
+
+  /// Bouncing type of the widget should be specified. By default Bounce in only
   BouncingType get bouncingType => widget.bouncingType;
+
+  /// Scale factor of which widget should be animated. By default scaleFactor is 2
   double get scaleFactor => widget.scaleFactor;
+
+  /// How much time the animation should take to complete. By default 200
   Duration get duration => widget.duration;
+
+  /// Animation dismission deemed value
   double get _lowerBound => widget.animationDismissionValue;
+
+  ///Animation completion deemed value
   double get _upperBound => widget.animationCompletionValue;
 
-  //Local variables
+  ///Local variables
+
+  /// animation controller intialize
   late AnimationController animationController;
+
+  /// Key for child, used to get the position of the child
   final GlobalKey key = GlobalKey();
+
+  /// Scale should be calculated based on animaation controller value and scale factor
   late double scale;
+
+  /// Setting this to false, once the bouncingIn animation done this value will change to true
   bool isBouncingInAnimationDone = false;
 
   @override
   void initState() {
-    // Add listener to listen the animation controller
+    /// Add listener to listen the animation controller
     animationController = AnimationController(
       vsync: this,
       duration: duration,
@@ -69,15 +92,17 @@ class _BouncingWidgetInOutState extends State<BouncingWidgetInOut>
     super.initState();
   }
 
-  //dispose animation controller
+  ///dispose animation controller
   @override
   void dispose() {
     animationController.dispose();
     super.dispose();
   }
 
+  /// Build method where our acture widget is being created
   @override
   Widget build(BuildContext context) {
+    ///Checking the widget bouncing type
     if (bouncingType == BouncingType.bounceInOnly) {
       scale = 1 - (animationController.value * scaleFactor);
     } else if (bouncingType == BouncingType.bounceOutOnly) {
@@ -93,6 +118,7 @@ class _BouncingWidgetInOutState extends State<BouncingWidgetInOut>
       }
     }
 
+/// Our actual widget
     return Container(
         margin: const EdgeInsets.only(right: 8.0),
         child: GestureDetector(
@@ -107,41 +133,43 @@ class _BouncingWidgetInOutState extends State<BouncingWidgetInOut>
         ));
   }
 
-  //Invoked first, Trigerred forward animation
+  ///Invoked first, Trigerred forward animation
   onTapDown(TapDownDetails tapDownDetails) {
     animationController.forward();
   }
 
-  //onTapUp trigger after onTapDown, For reversing animation
+  ///onTapUp trigger after onTapDown, For reversing animation
   onTapUp(TapUpDetails tapUpDetails) {
+    ///Delaying the animation
     Future.delayed(duration, () {
       reverseAnimation();
     });
     onPressed();
   }
 
-  //reverse animation
+  ///reverse animation
   reverseAnimation() {
     if (mounted) {
       animationController.reverse();
       setState(() {
+        /// once the animation is finished changed the bool value to true
         isBouncingInAnimationDone = true;
       });
     }
   }
 
-  // Handling if user long pressed widget
+  /// Handling if user long pressed widget
   onLongPressEnd(LongPressEndDetails details, BuildContext context) {
     final Offset touchPosition = details.globalPosition;
 
-    // if current position is on widget exectue on pressed method else just reverse the animation
+    /// if current position is on widget exectue on pressed method else just reverse the animation
     if (!isPositionOutsideChild(touchPosition)) {
       onPressed();
     }
     reverseAnimation();
   }
 
-  // Checking if current postion is on the widget or not after long press
+  /// Checking if current postion is on the widget or not after long press
   bool isPositionOutsideChild(Offset touchPosition) {
     final RenderBox? childRenderBox =
         key.currentContext?.findRenderObject() as RenderBox?;
@@ -151,6 +179,7 @@ class _BouncingWidgetInOutState extends State<BouncingWidgetInOut>
     final Size childSize = childRenderBox.size;
     final Offset childPosition = childRenderBox.localToGlobal(Offset.zero);
 
+    /// Checking if the current position is within the child after long press and dragged
     return (touchPosition.dx < childPosition.dx ||
         touchPosition.dx > childPosition.dx + childSize.width ||
         touchPosition.dy < childPosition.dy ||
